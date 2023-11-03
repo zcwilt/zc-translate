@@ -122,7 +122,6 @@ class LangFileConverter extends FileConverter
 
     protected function loadOverrides()
     {
-        $this->overrides = config('zc-translate.override.' . $this->targetLanguage . '.lang');
+        $this->overrides = config('translations.' . $this->targetLanguage . '.overrides.lang');
     }
-
 }

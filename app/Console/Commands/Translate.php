@@ -37,6 +37,10 @@ class translate extends Command
         $targetLanguageShort = $this->argument('target-language');
         $sourceLanguageLong = ShortToLongLanguage::getLongLanguage($sourceLanguageShort);
         $targetLanguageLong = ShortToLongLanguage::getLongLanguage($targetLanguageShort);
+        if (!isset($sourceLanguageLong) || !isset($targetLanguageLong)) {
+            $this->error('Invalid source or target language. Ensure that the language is defined in config/translations/{language}.php');
+            return;
+        }
         $sourceDir = $this->option('source-dir-prefix');
         $branch = $this->option('branch');
         $fileManager = new APIFileManager($this, $sourceLanguageLong, $targetLanguageLong, $sourceDir, $branch);
